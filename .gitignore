@@ -1,0 +1,29 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Django
+*.log
+db.sqlite3
+/media/
+/static/
+*.pot
+*.mo
+
+# Secret key
+*.secret_key
+
+# Virtual environment
+/.venv/
+
+# IDE specific
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Others
+*.bak
+*.swp
+*~
+.DS_Store

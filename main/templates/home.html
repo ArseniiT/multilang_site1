@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Home Page" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Welcome to my site" %}</h1>
+    <p>{{ welcome_message }}</p>
+{% endblock %}

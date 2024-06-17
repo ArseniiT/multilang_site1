@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "Home Page"
+msgstr "Home Page"
+
+msgid "Welcome to my site"
+msgstr "Welcome to my site"
+
+msgid "Change language"
+msgstr "Change language"
