@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import Article
-from django.utils.translation import gettext as _
+from main.models import Article
 
 
 def home(request):

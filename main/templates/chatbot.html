@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Chatbot" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Chat with our AI" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="user_input" class="form-label">{% trans "Your question" %}</label>
+            <textarea class="form-control" id="user_input" name="user_input" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">{% trans "Ask" %}</button>
+    </form>
+    {% if response %}
+        <div class="mt-4">
+            <h2>{% trans "Response" %}</h2>
+            <p>{{ response }}</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

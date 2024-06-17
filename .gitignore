@@ -13,6 +13,7 @@ db.sqlite3
 
 # Secret key
 *.secret_key
+.env
 
 # Virtual environment
 /.venv/
