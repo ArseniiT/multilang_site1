@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b6566fd-5408-4a94-bcf5-fa1c3bd5a38a" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/locale/fr/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/main/article_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+    <list default="true" id="6b6566fd-5408-4a94-bcf5-fa1c3bd5a38a" name="Changes" comment="Add bootstrap5, README.md, requirements.txt">
+      <change afterPath="$PROJECT_DIR$/main/templates/language_switcher.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/populate_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multilang_site1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/multilang_site1/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multilang_site1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/multilang_site1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/article_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +21,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -94,7 +95,7 @@
       <updated>1718577710895</updated>
       <workItem from="1718577720626" duration="2254000" />
       <workItem from="1718580011348" duration="1048000" />
-      <workItem from="1718615813467" duration="4007000" />
+      <workItem from="1718615813467" duration="11820000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -104,7 +105,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718578220820</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add i18n">
+      <option name="closed" value="true" />
+      <created>1718620149088</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718620149088</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add bootstrap5, README.md, requirements.txt">
+      <option name="closed" value="true" />
+      <created>1718622636981</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718622636981</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +129,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Add i18n" />
+    <MESSAGE value="Add bootstrap5, README.md, requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add bootstrap5, README.md, requirements.txt" />
   </component>
 </project>

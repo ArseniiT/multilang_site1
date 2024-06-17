@@ -31,7 +31,10 @@ This project demonstrates a simple Django application that supports multilingual
 5. Create a superuser (to access Django admin):
     ```bash
     python manage.py createsuperuser
-6. Start the development server:
+6. Populate the database with initial articles:
+    ```bash
+    python populate_db.py
+7. Start the development server:
     ```bash
     python manage.py runserver
 

@@ -4,33 +4,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Website{% endblock %}</title>
+    {% bootstrap_css %}
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="/">{% trans "Home" %}</a></li>
-                <!-- Other navigation links -->
-            </ul>
-            <form action="{% url 'set_language' %}" method="post">
-                {% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% for lang_code, lang_name in LANGUAGES %}
-                        <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                            {{ lang_name }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="{% trans 'Change language' %}">
-            </form>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">{% trans "My Website" %}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">{% trans "Home" %}</a>
+                        </li>
+                        <!-- Other navigation links -->
+                    </ul>
+                    <div>
+                        {% include 'language_switcher.html' %}
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
-    <main>
+    <main class="container mt-4 text-center">
         {% block content %}{% endblock %}
     </main>
+    {% bootstrap_javascript %}
 </body>
 </html>
