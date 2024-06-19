@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <h1>{% trans "Chat with our AI" %}</h1>
-    <form id="chat-form" method="post">
+    <form id="chat-form" method="post" action="{% url 'main:send_user_message' %}">
         {% csrf_token %}
         <div class="mb-3">
             <label for="user_input" class="form-label">{% trans "Your question" %}</label>
@@ -15,7 +15,14 @@
         <button type="submit" class="btn btn-primary">{% trans "Ask" %}</button>
     </form>
     <div id="chat-messages" class="mt-4">
-        <!-- Messages will be displayed here -->
+        {% for c in conversation %}
+            <div class="chat-message">
+                <strong>{{ c.user }}:</strong> {{ c.user_input }}
+            </div>
+            <div class="chat-message">
+                <strong>{{ c.ai }}:</strong> {{ c.chatbot_response }}
+            </div>
+        {% endfor %}
     </div>
 </div>
 
@@ -27,48 +34,54 @@ document.addEventListener('DOMContentLoaded', function() {
     chatForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         const formData = new FormData(chatForm);
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Display user input immediately
+        const userInput = formData.get('user_input');
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('chat-message');
+        userMessageDiv.innerHTML = `<strong>You:</strong> ${userInput}`;
+        chatMessages.appendChild(userMessageDiv);
 
         try {
-            const response = await fetch('/chatbot/', {
+            const response = await fetch(chatForm.action, {
                 method: 'POST',
-                body: formData,
                 headers: {
-                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-                }
+                    'X-CSRFToken': csrfToken,
+                },
+                body: formData
             });
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) {
-                throw new TypeError(`Oops, we haven't got JSON!`);
-            }
-
             const responseData = await response.json();
 
-            // Update chat messages with user input and AI response
-            const userMessage = formData.get('user_input');
-            const aiResponse = responseData.chatbot_response;
-
-            const userMessageDiv = document.createElement('div');
-            userMessageDiv.classList.add('chat-message');
-            userMessageDiv.innerHTML = `<strong>{% trans "You" %}:</strong> ${userMessage}`;
-
-            const aiResponseDiv = document.createElement('div');
-            aiResponseDiv.classList.add('chat-message');
-            aiResponseDiv.innerHTML = `<strong>{% trans "AI" %}:</strong> ${aiResponse}`;
-
-            chatMessages.appendChild(userMessageDiv);
-            chatMessages.appendChild(aiResponseDiv);
+            if (responseData.chatbot_response) {
+                // Display AI response
+                const aiMessageDiv = document.createElement('div');
+                aiMessageDiv.classList.add('chat-message');
+                aiMessageDiv.innerHTML = `<strong>AI:</strong> ${responseData.chatbot_response}`;
+                chatMessages.appendChild(aiMessageDiv);
+            } else {
+                // Handle error scenario
+                const errorDiv = document.createElement('div');
+                errorDiv.classList.add('chat-message');
+                errorDiv.innerHTML = `<strong>Error:</strong> ${responseData.error}`;
+                chatMessages.appendChild(errorDiv);
+            }
 
             // Clear input field after successful submission
             chatForm.reset();
 
         } catch (error) {
             console.error('Error:', error);
-            // Optionally, update the UI to show the error
+            // Handle error scenario in UI
+            const errorDiv = document.createElement('div');
+            errorDiv.classList.add('chat-message');
+            errorDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            chatMessages.appendChild(errorDiv);
         }
     });
 });
