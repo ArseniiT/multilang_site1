@@ -5,7 +5,6 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switcher
 ]
 

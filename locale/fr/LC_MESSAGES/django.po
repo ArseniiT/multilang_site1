@@ -32,3 +32,6 @@ msgstr "IA"
 
 msgid "Error"
 msgstr "Erreur"
+
+msgid "Search in articles"
+msgstr "Rechercher dans les articles"
