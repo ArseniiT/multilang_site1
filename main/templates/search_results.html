@@ -1,0 +1,24 @@
+<!-- search_results.html -->
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Search Results" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Search Results" %}</h1>
+    <p>{% trans "Results for" %} "{{ query }}":</p>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <strong>{{ article.title }}</strong><br>
+                {{ article.content|truncatewords:50 }}
+            </li>
+        {% empty %}
+            <li>{% trans "No articles found." %}</li>
+        {% endfor %}
+    </ul>
+    <h2>{% trans "Augmented Results" %}</h2>
+    <p>{{ augmented_results }}</p>
+</div>
+{% endblock %}
