@@ -11,3 +11,24 @@ msgstr "Welcome to my site"
 
 msgid "Change language"
 msgstr "Change language"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Chat with our AI"
+msgstr "Chat with our AI"
+
+msgid "Your question"
+msgstr "Your question"
+
+msgid "Ask"
+msgstr "Ask"
+
+msgid "You"
+msgstr "You"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "Error"
+msgstr "Error"
