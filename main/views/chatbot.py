@@ -13,15 +13,23 @@ conversation = []  # Store the conversation history globally
 @csrf_exempt
 def chatbot(request):
     global conversation
+    # Clear the session for refresh conversation each time when chatbot page is loaded
+    request.session.flush()
+
+    # Retrieve conversation from session or initialize if not present
+    conversation = request.session.get('conversation', [])
     return render(request, 'chatbot.html', {'conversation': conversation})
 
 
 @csrf_exempt
 def send_user_message(request):
-    global conversation
+    # global conversation
 
     if request.method == 'POST':
         user_input = request.POST.get('user_input')
+
+        # Retrieve conversation from session or initialize if not present
+        conversation = request.session.get('conversation', [])
 
         try:
             # Create a chat completion
