@@ -7,13 +7,10 @@ from openai import OpenAI
 # Initialize the OpenAI API client
 ai = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-conversation = []  # Store the conversation history globally
-
 
 @csrf_exempt
 def chatbot(request):
-    global conversation
-    # Clear the session for refresh conversation each time when chatbot page is loaded
+    # Clear the session for refresh conversation each time the chatbot page is loaded
     request.session.flush()
 
     # Retrieve conversation from session or initialize if not present
@@ -23,8 +20,6 @@ def chatbot(request):
 
 @csrf_exempt
 def send_user_message(request):
-    # global conversation
-
     if request.method == 'POST':
         user_input = request.POST.get('user_input')
 
@@ -49,11 +44,18 @@ def send_user_message(request):
             # Append user input and AI response to conversation history
             conversation.append({'user': 'You', 'user_input': user_input, 'ai': 'AI', 'chatbot_response': chatbot_response})
 
+            # Save the updated conversation in the session
+            request.session['conversation'] = conversation
+
             return JsonResponse({'user_input': user_input, 'chatbot_response': chatbot_response})
 
         except Exception as e:
             chatbot_response = f"An error occurred: {e}"
             conversation.append({'user': 'You', 'user_input': user_input, 'ai': 'AI', 'chatbot_response': chatbot_response})
+
+            # Save the updated conversation in the session
+            request.session['conversation'] = conversation
+
             return JsonResponse({'user_input': user_input, 'chatbot_response': chatbot_response})
 
     return JsonResponse({'error': 'Invalid request'}, status=400)

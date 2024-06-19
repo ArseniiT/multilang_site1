@@ -15,7 +15,7 @@
         <button type="submit" class="btn btn-primary">{% trans "Ask" %}</button>
     </form>
     <div id="chat-messages" class="mt-4">
-        {% for c in conversation %}
+        {% for c in conversation reversed %}
             <div class="chat-message">
                 <strong>{{ c.user }}:</strong> {{ c.user_input }}
             </div>
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userMessageDiv = document.createElement('div');
         userMessageDiv.classList.add('chat-message');
         userMessageDiv.innerHTML = `<strong>You:</strong> ${userInput}`;
-        chatMessages.appendChild(userMessageDiv);
+        chatMessages.prepend(userMessageDiv);
 
         try {
             const response = await fetch(chatForm.action, {
@@ -63,13 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const aiMessageDiv = document.createElement('div');
                 aiMessageDiv.classList.add('chat-message');
                 aiMessageDiv.innerHTML = `<strong>AI:</strong> ${responseData.chatbot_response}`;
-                chatMessages.appendChild(aiMessageDiv);
+                chatMessages.prepend(aiMessageDiv);
             } else {
                 // Handle error scenario
                 const errorDiv = document.createElement('div');
                 errorDiv.classList.add('chat-message');
                 errorDiv.innerHTML = `<strong>Error:</strong> ${responseData.error}`;
-                chatMessages.appendChild(errorDiv);
+                chatMessages.prepend(errorDiv);
             }
 
             // Clear input field after successful submission
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const errorDiv = document.createElement('div');
             errorDiv.classList.add('chat-message');
             errorDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
-            chatMessages.appendChild(errorDiv);
+            chatMessages.prepend(errorDiv);
         }
     });
 });

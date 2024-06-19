@@ -21,7 +21,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">{% trans "Home" %}</a>
                         </li>
-                        <!-- Other navigation links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:chatbot' %}">{% trans "Chatbot" %}</a>
+                        </li>
                     </ul>
                     <div>
                         {% include 'language_switcher.html' %}
