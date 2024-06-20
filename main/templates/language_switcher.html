@@ -1,5 +1,5 @@
 {% load i18n %}
-<form action="{% url 'set_language' %}" method="post" class="language-switcher">
+<form action="{% url 'set_language' %}" method="post" class="language-switcher m-3">
     {% csrf_token %}
     <input name="next" type="hidden" value="{{ redirect_to }}">
     <button type="submit" name="language" value="en" class="btn btn-outline-primary {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>

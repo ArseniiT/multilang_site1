@@ -16,11 +16,15 @@
     </form>
     <div id="chat-messages" class="mt-4">
         {% for c in conversation reversed %}
-            <div class="chat-message">
-                <strong>{{ c.user }}:</strong> {{ c.user_input }}
+            <div class="chat-message ai-message">
+                <div class="message-content">
+                    <strong class="message-label-left">{{ c.ai }}:</strong> {{ c.chatbot_response }}
+                </div>
             </div>
-            <div class="chat-message">
-                <strong>{{ c.ai }}:</strong> {{ c.chatbot_response }}
+            <div class="chat-message user-message">
+                <div class="message-content">
+                    <strong class="message-label-right">{{ c.user }}:</strong> {{ c.user_input }}
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -36,12 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(chatForm);
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-        // Display user input immediately
+        // Display user input immediately with transition
         const userInput = formData.get('user_input');
         const userMessageDiv = document.createElement('div');
-        userMessageDiv.classList.add('chat-message');
-        userMessageDiv.innerHTML = `<strong>You:</strong> ${userInput}`;
+        userMessageDiv.classList.add('chat-message', 'user-message', 'hidden');
+        userMessageDiv.innerHTML = `<div class="message-content"><strong class="message-label-right">You</strong> ${userInput}</div>`;
         chatMessages.prepend(userMessageDiv);
+
+        // Trigger transition
+        setTimeout(() => {
+            userMessageDiv.classList.remove('hidden');
+        }, 10);
 
         try {
             const response = await fetch(chatForm.action, {
@@ -59,16 +68,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const responseData = await response.json();
 
             if (responseData.chatbot_response) {
-                // Display AI response
+                // Display AI response with transition
                 const aiMessageDiv = document.createElement('div');
-                aiMessageDiv.classList.add('chat-message');
-                aiMessageDiv.innerHTML = `<strong>AI:</strong> ${responseData.chatbot_response}`;
+                aiMessageDiv.classList.add('chat-message', 'ai-message', 'hidden');
+                aiMessageDiv.innerHTML = `<div class="message-content"><strong class="message-label-left">AI</strong> ${responseData.chatbot_response}</div>`;
                 chatMessages.prepend(aiMessageDiv);
+
+                // Trigger transition with delay
+                setTimeout(() => {
+                    aiMessageDiv.classList.remove('hidden');
+                }, 500); // Adjust delay as needed
             } else {
                 // Handle error scenario
                 const errorDiv = document.createElement('div');
-                errorDiv.classList.add('chat-message');
-                errorDiv.innerHTML = `<strong>Error:</strong> ${responseData.error}`;
+                errorDiv.classList.add('chat-message', 'error-message');
+                errorDiv.innerHTML = `<div class="message-content"><strong>Error:</strong> ${responseData.error}</div>`;
                 chatMessages.prepend(errorDiv);
             }
 
@@ -79,11 +93,52 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
             // Handle error scenario in UI
             const errorDiv = document.createElement('div');
-            errorDiv.classList.add('chat-message');
-            errorDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            errorDiv.classList.add('chat-message', 'error-message');
+            errorDiv.innerHTML = `<div class="message-content"><strong>Error</strong> ${error.message}</div>`;
             chatMessages.prepend(errorDiv);
         }
     });
 });
 </script>
+
+<style>
+    .chat-message {
+        margin-bottom: 1rem;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        transform: translateY(0);
+    }
+    .user-message {
+        background-color: #f5f5f5;
+        align-self: flex-end;
+        margin-left: auto;
+    }
+    .ai-message {
+        background-color: #e8fbf2;
+        align-self: flex-start;
+        margin-right: auto;
+    }
+    .message-content {
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .chat-message strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .message-label-left {
+        float: left;
+    }
+    .message-label-right {
+        float: right;
+    }
+    .hidden {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+</style>
+
 {% endblock %}
