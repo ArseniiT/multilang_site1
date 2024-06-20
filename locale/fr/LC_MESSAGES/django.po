@@ -6,8 +6,8 @@ msgstr ""
 msgid "Home Page"
 msgstr "Page d'accueil"
 
-msgid "Welcome to my site"
-msgstr "Bienvenue sur mon site"
+msgid "The IT World: news, files and IT trends"
+msgstr "Le Monde Informatique : actualités, dossiers et tendances IT"
 
 msgid "Change language"
 msgstr "Changer la langue"
@@ -35,3 +35,6 @@ msgstr "Erreur"
 
 msgid "Search in articles"
 msgstr "Rechercher dans les articles"
+
+msgid "Search Results for"
+msgstr "Résultats de recherche pour"

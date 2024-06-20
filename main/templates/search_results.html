@@ -6,8 +6,11 @@
 
 {% block content %}
 <div class="container">
-    <h1>{% trans "Search Results" %}</h1>
-    <p>{% trans "Results for" %} "{{ query }}":</p>
+    <h1>{% trans "Search Results for" %} "{{ query }}":</h1>
+
+    <h2>{% trans "Augmented Results" %}</h2>
+    <p>{{ augmented_results }}</p>
+
     <ul>
         {% for article in articles %}
             <li>
@@ -18,7 +21,6 @@
             <li>{% trans "No articles found." %}</li>
         {% endfor %}
     </ul>
-    <h2>{% trans "Augmented Results" %}</h2>
-    <p>{{ augmented_results }}</p>
+
 </div>
 {% endblock %}
