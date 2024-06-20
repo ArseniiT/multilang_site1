@@ -1,7 +1,25 @@
 {% load i18n %}
+
 <form action="{% url 'set_language' %}" method="post" class="language-switcher m-3">
     {% csrf_token %}
     <input name="next" type="hidden" value="{{ redirect_to }}">
-    <button type="submit" name="language" value="en" class="btn btn-outline-primary {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
-    <button type="submit" name="language" value="fr" class="btn btn-outline-primary {% if LANGUAGE_CODE == 'fr' %}active{% endif %}">FR</button>
+
+    <button type="submit" name="language" value="en" class="btn mr-3 btn-outline-primary {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">
+        {% trans "EN" %}
+    </button>
+    <button type="submit" name="language" value="fr" class="btn btn-outline-primary {% if request.LANGUAGE_CODE == 'fr' %}active{% endif %}">
+        {% trans "FR" %}
+    </button>
 </form>
+
+<style>
+    .language-switcher .btn {
+        margin-right: 5px;
+    }
+
+    .language-switcher .btn.active {
+        font-weight: bold;
+        background-color: #858585;
+        color: white;
+    }
+</style>
