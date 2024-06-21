@@ -1,3 +1,4 @@
+<!-- main/templates/home.html -->
 {% extends 'base.html' %}
 {% load i18n %}
 
@@ -7,6 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
             <h1 class="display-4 text-center">{% trans "The IT World: news, files and IT trends" %}</h1>
+            <a href="{% url 'main:article_create' %}">{% trans "Create new article" %}</a>
         </div>
     </div>
 
@@ -19,6 +21,9 @@
                             <h3 class="h5 card-title">{{ article.title }}</h3>
                             <p class="card-text">{{ article.content }}</p>
                             <small class="text-muted">{% trans "Published on" %}: {{ article.publication_date }}</small>
+                            <br>
+                            <a href="{% url 'main:article_update' article.pk %}">{% trans "Edit" %}</a>
+                            <a href="{% url 'main:article_delete' article.pk %}">{% trans "Delete" %}</a>
                         </div>
                     </div>
                 </div>

@@ -41,3 +41,21 @@ msgstr "Search Results for"
 
 msgid "Augmented Results"
 msgstr "Augmented Results"
+
+msgid "Create new article"
+msgstr "Create new article"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Delete Article"
+msgstr "Delete Article"
+
+msgid "Are you sure you want to delete"
+msgstr "Are you sure you want to delete"
+
+msgid "Yes, delete"
+msgstr "Yes, delete"
+
+msgid "Cancel"
+msgstr "Cancel"

@@ -4,7 +4,6 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from openai import OpenAI
 
-# Initialize the OpenAI API client
 ai = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 

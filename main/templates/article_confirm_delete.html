@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Article" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Delete Article" %}</h1>
+    <p>{% trans "Are you sure you want to delete" %} "{{ article.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">{% trans "Yes, delete" %}</button>
+    </form>
+    <a href="{% url 'main:home' %}">{% trans "Cancel" %}</a>
+{% endblock %}
