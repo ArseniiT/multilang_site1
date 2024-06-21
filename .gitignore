@@ -9,7 +9,6 @@ db.sqlite3
 /media/
 /static/
 *.pot
-*.mo
 
 # Secret key
 *.secret_key

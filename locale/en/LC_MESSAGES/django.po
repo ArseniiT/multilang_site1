@@ -59,3 +59,12 @@ msgstr "Yes, delete"
 
 msgid "Cancel"
 msgstr "Cancel"
+
+msgid "New Article"
+msgstr "New Article"
+
+msgid "Enter title"
+msgstr "Enter title"
+
+msgid "Enter content"
+msgstr "Enter content"

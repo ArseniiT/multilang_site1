@@ -59,3 +59,12 @@ msgstr "Oui, supprimer"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "New Article"
+msgstr "Nouvel Article"
+
+msgid "Enter title"
+msgstr "Entrer le titre"
+
+msgid "Enter content"
+msgstr "Entrer le contenu"
