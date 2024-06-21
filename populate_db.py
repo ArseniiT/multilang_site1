@@ -74,6 +74,7 @@ def populate():
             publication_date=timezone.make_aware(timezone.datetime.strptime(article['publication_date'], '%Y-%m-%dT%H:%M:%SZ'))
         ) for article in articles
     ]
+    # Populate the database with one request
     Article.objects.bulk_create(articles_to_create)
 
 
